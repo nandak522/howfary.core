@@ -20,5 +20,5 @@ setup(
     zip_safe=False,
     install_requires=INSTALL_REQUIRES,
     tests_require=TESTS_REQUIRE,
-    entry_points={'console_scripts': ['howfar = dica.core.query:main']}
+    entry_points={'console_scripts': ['howfar = dica.core.cli:howfar']}
 )
