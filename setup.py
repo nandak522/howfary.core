@@ -1,5 +1,6 @@
 import sys
-from setuptools import setup, find_packages, Command
+from setuptools import setup, find_packages
+from setuptools.command.test import test as TestCommand
 
 VERSION = '0.1.0'
 
@@ -13,16 +14,16 @@ if sys.version_info[:2] < (2, 7):
     raise RuntimeError('Requires Python 2.7 or later')
 
 # NOTE: To enable support for 'python setup.py test'
-class PyTest(Command):
-    user_options = []
-    def initialize_options(self):
-        pass
+class PyTest(TestCommand):
     def finalize_options(self):
-        pass
-    def run(self):
-        import sys,subprocess
-        errno = subprocess.call([sys.executable, 'runtests.py'])
-        raise SystemExit(errno)
+        TestCommand.finalize_options(self)
+        self.test_args = []
+        self.test_suite = True
+    def run_tests(self):
+        #import here, cause outside the eggs aren't loaded
+        import pytest
+        errno = pytest.main(self.test_args)
+        sys.exit(errno)
 
 
 setup(
