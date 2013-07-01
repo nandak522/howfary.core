@@ -8,10 +8,15 @@ INSTALL_REQUIRES=[
     'requests',
     ]
 
+
 TESTS_REQUIRE=('pytest', 'coverage')
 
-if sys.version_info[:2] < (2, 7):
-    raise RuntimeError('Requires Python 2.7 or later')
+if sys.version_info[:2] < (2, 6):
+    raise RuntimeError('Requires Python 2.6 or later')
+
+if sys.version_info[1] == 6:
+    # NOTE: Starting Python 2.7, argparse is a built-in.
+    INSTALL_REQUIRES.append('argparse')
 
 # NOTE: To enable support for 'python setup.py test'
 class PyTest(TestCommand):
