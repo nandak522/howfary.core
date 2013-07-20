@@ -32,13 +32,13 @@ class PyTest(TestCommand):
 
 
 setup(
-    name='dica.core',
+    name='howfary.core',
     packages=find_packages(exclude=["tests"]),
-    namespace_packages=['dica'],
+    namespace_packages=['howfary'],
     version=VERSION,
     zip_safe=False,
     install_requires=INSTALL_REQUIRES,
     tests_require=TESTS_REQUIRE,
-    entry_points={'console_scripts': ['howfar = dica.core.cli:howfar']},
+    entry_points={'console_scripts': ['howfar = howfary.core.cli:howfar']},
     cmdclass={'test': PyTest},
 )

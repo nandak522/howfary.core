@@ -1,4 +1,4 @@
-from dica.core.query import compute_howfar
+from howfary.core.query import compute_howfar
 
 def test_query():
     distance_attributes = compute_howfar(source='Delhi', destination='Bangalore')
