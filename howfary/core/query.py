@@ -1,6 +1,8 @@
 import requests
 
-URL = 'http://maps.googleapis.com/maps/api/distancematrix/json?origins={source}&destinations={destination}&sensor=false'
+DIRECTIONS_API_URL = 'https://maps.googleapis.com/maps/api/directions/json?origin={source}&destination={destination}&sensor=false&alternatives=true'
+
+DIRECTIONS_LINK_URL = 'https://maps.google.com/maps?saddr={source}&daddr={destination}'
 
 def compute_howfar(source, destination):
     '''
@@ -19,11 +21,11 @@ def compute_howfar(source, destination):
         u'status': u'OK'
     }
     '''
-    url = URL.format(source=source, destination=destination)
+    url = DIRECTIONS_API_URL.format(source=source, destination=destination)
     response = requests.get(url)
     assert response.status_code == 200, 'Not able to retrieve distance between source and destination'
     response = response.json()
-    return response['rows'][0]['elements'][0]
+    return response['routes'][0]['legs'][0]
 
 
 if __name__ == '__main__':
