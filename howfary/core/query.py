@@ -2,7 +2,7 @@ import requests
 
 DIRECTIONS_API_URL = 'https://maps.googleapis.com/maps/api/directions/json?origin={source}&destination={destination}&sensor=false&alternatives=true'
 
-DIRECTIONS_LINK_URL = 'https://maps.google.com/maps?saddr={source}&daddr={destination}'
+DIRECTIONS_LINK_URL = 'https://maps.google.com/maps'
 
 def compute_howfar(source, destination):
     '''
